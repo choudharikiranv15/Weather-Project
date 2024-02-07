@@ -1,0 +1,136 @@
+* { 
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  transition: all 0.3s ease; /* Adding transition for smoothness */
+}
+
+body {
+  background-color: rgb(45, 56, 73); /* Updated background color */
+}
+
+.card {
+  width: 90%;
+  max-width: 670px;
+  background: linear-gradient(135deg, rgb(233, 134, 4), #6ab5e7);
+  color: #fff; /* Updated text color */
+  margin: 100px auto 0;
+  border-radius: 20px;
+  padding: 40px 35px;
+  text-align: center;
+  position: relative;
+  transform: translateY(0); /* Initial transform */
+  opacity: 1; /* Initial opacity */
+  transition: all 0.3s ease; /* Adding transition for smoothness */
+}
+
+.card:hover {
+  transform: translateY(-10px); /* Add a hover animation */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Add shadow on hover */
+}
+
+.search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search input {
+  border: 0;
+  outline: 0;
+  background: rgb(33, 150, 243); /* Updated input background color */
+  color: #fff; /* Updated input text color */
+  padding: 10px 25px;
+  height: 60px;
+  border-radius: 30px;
+  flex: 1;
+  margin-right: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.search button {
+  border: 0;
+  outline: 0;
+  background: rgb(21, 101, 192); /* Updated button background color */
+  color: #fff; /* Updated button text color */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: background 0.3s ease; /* Add transition on background */
+}
+
+.search button:hover {
+  background: rgb(3, 63, 128); /* Change background color on hover */
+}
+
+.search button img {
+  width: 16px;
+}
+
+.weather-icon {
+  width: 170px;
+  margin-top: 30px;
+}
+
+.weather h1 {
+  font-size: 80px;
+  font-weight: 500;
+}
+
+.weather h1 {
+  font-size: 40px;
+  font-weight: 400;
+  margin-top: -10px;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
+  margin-top: 50px;
+}
+
+.col {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.col img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.humidity {
+  font-size: 28px;
+  margin-top: -6px;
+}
+
+.weather {
+  display: none;
+}
+
+.error {
+  text-align: left;
+  margin-left: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+  display: none;
+}
+
+@media (max-width: 450px) { 
+  .search {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .search input {
+      margin-right: 0;
+      margin-bottom: 10px;
+  }
+}
