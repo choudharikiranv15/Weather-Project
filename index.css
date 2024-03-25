@@ -172,10 +172,13 @@ body {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      object-fit: cover;
     }
     .footer-bottom {
-      position: relative;
-      margin-left: 640px;
+      position: absolute;      
+      transform: translateX(-50%);
+      text-align: center;
+      margin-left: 680px;
       font-size: 18px;
       color: white;
       margin-top: 460px;
@@ -226,5 +229,26 @@ body {
           width: 100%;
           height: auto;
         }
+    }
+
+    /* New Media Queries */
+    @media (max-width: 768px) {
+      video {
+        width: auto;
+        height: 100%;
+      }
+      .footer-bottom {
+        font-size: 14px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      video {
+        height: auto;
+      }
+      .footer-bottom {
+        font-size: 12px;
+        bottom: 10px;
+      }
     }
     
