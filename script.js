@@ -1,5 +1,5 @@
-// API Configuration
-const API_KEY = "05ee2fa2f012b05e42b698786021cec2";
+// Load API key from config
+const API_KEY = config.OPENWEATHER_API_KEY;
 const API_URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
 // DOM Elements
