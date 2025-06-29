@@ -3,7 +3,7 @@
 // Get your API key from: https://openweathermap.org/api
 // Sign up at: https://home.openweathermap.org/users/sign_up
 const config = {
-    OPENWEATHER_API_KEY: "YOUR_API_KEY_HERE" // Replace this with your actual API key
+    OPENWEATHER_API_KEY: "05ee2fa2f012b05e42b698786021cec2" // Your actual API key for live deployment
 };
 
 // Export for use in other files
