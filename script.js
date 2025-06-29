@@ -32,50 +32,10 @@ const weatherConditions = {
 // Loading state management
 let isLoading = false;
 
-// Show loading state
-function showLoading() {
-    if (isLoading) return;
-    isLoading = true;
-    
-    const originalContent = searchBtn.innerHTML;
-    searchBtn.innerHTML = '<div class="loading-spinner"></div>';
-    searchBtn.disabled = true;
-    searchBox.disabled = true;
-    
-    // Store original content for restoration
-    searchBtn.dataset.originalContent = originalContent;
-}
-
-// Hide loading state
-function hideLoading() {
-    if (!isLoading) return;
-    isLoading = false;
-    
-    searchBtn.innerHTML = searchBtn.dataset.originalContent || '<img src="assets/search.png" alt="Search icon">';
-    searchBtn.disabled = false;
-    searchBox.disabled = false;
-}
-
-// Show error message
-function showError(message) {
-    errorDiv.querySelector('p').textContent = message;
-    errorDiv.style.display = "block";
-    weatherDiv.style.display = "none";
-    
-    // Auto-hide error after 5 seconds
-    setTimeout(() => {
-        errorDiv.style.display = "none";
-    }, 5000);
-}
-
-// Hide error message
-function hideError() {
-    errorDiv.style.display = "none";
-}
-
 // Show weather data
 function showWeather(data) {
-    hideError();
+    // Hide error message
+    errorDiv.style.display = "none";
     
     // Update weather information
     document.querySelector(".city").textContent = data.name;
@@ -98,6 +58,28 @@ function showWeather(data) {
     weatherDiv.style.animation = "fadeInUp 0.6s ease";
 }
 
+// Fetch current weather
+async function getWeather(city) {
+    try {
+        const response = await fetch(API_URL + encodeURIComponent(city) + `&appid=${API_KEY}`);
+        
+        if (!response.ok) {
+            if (response.status === 401) {
+                throw new Error("API key error. Please contact support.");
+            } else if (response.status === 404) {
+                throw new Error("City not found. Please check the spelling.");
+            } else {
+                throw new Error("Failed to fetch weather data.");
+            }
+        }
+        
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 // Main weather checking function
 async function checkWeather(city) {
     if (isLoading) return;
@@ -114,19 +96,19 @@ async function checkWeather(city) {
             getForecast(city)
         ]);
         
-        displayWeather(weatherData);
+        showWeather(weatherData);
         displayForecast(forecastData);
         
         // Hide error message if it was showing
-        error.style.display = "none";
+        errorDiv.style.display = "none";
         
     } catch (error) {
         console.error("Error:", error);
-        error.style.display = "block";
-        error.querySelector("p").textContent = error.message;
+        errorDiv.style.display = "block";
+        errorDiv.querySelector("p").textContent = error.message;
         
         // Hide weather and forecast on error
-        weather.style.display = "none";
+        weatherDiv.style.display = "none";
         const forecastContainer = document.querySelector('.forecast');
         if (forecastContainer) {
             forecastContainer.style.display = "none";
@@ -206,14 +188,18 @@ function displayForecast(forecastData) {
 // Event Listeners
 searchBtn.addEventListener("click", () => {
     const city = searchBox.value.trim();
-    checkWeather(city);
+    if (city) {
+        checkWeather(city);
+    }
 });
 
 // Enter key support
 searchBox.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         const city = searchBox.value.trim();
-        checkWeather(city);
+        if (city) {
+            checkWeather(city);
+        }
     }
 });
 
@@ -222,25 +208,8 @@ searchBox.addEventListener("focus", () => {
     searchBox.select();
 });
 
-// Auto-search on input change (debounced)
-let searchTimeout;
-searchBox.addEventListener("input", (e) => {
-    clearTimeout(searchTimeout);
-    const city = e.target.value.trim();
-    
-    if (city.length > 2) {
-        searchTimeout = setTimeout(() => {
-            checkWeather(city);
-        }, 1000); // 1 second delay
-    }
-});
-
-// Initialize with a default city (optional)
+// Initialize with focus on input
 document.addEventListener("DOMContentLoaded", () => {
-    // You can set a default city here if desired
-    // checkWeather("London");
-    
-    // Focus the input for better UX
     searchBox.focus();
 });
 
