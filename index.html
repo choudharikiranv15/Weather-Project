@@ -30,10 +30,25 @@
             >
                 <img src="assets/search.png" alt="Search icon">
             </button>
+            <button 
+                type="button"
+                aria-label="Use my location"
+                id="locationBtn"
+            >
+                <img src="assets/location-pin.png" alt="Use my location" style="width:22px;height:22px;" />
+            </button>
+            <label class="unit-toggle" title="Toggle °C/°F">
+                <input type="checkbox" id="unitToggle" />
+                <span class="slider"></span>
+                <span class="unit-label">°C / °F</span>
+            </label>
         </header>
-        
-        <div class="error" role="alert" aria-live="polite">
-            <p>Invalid city name. Please try again.</p>
+        <div class="recent-searches" aria-label="Recent city searches"></div>
+        <div class="error-modal" id="errorModal" role="alertdialog" aria-modal="true" style="display:none;">
+            <div class="error-modal-content">
+                <span class="error-modal-message"></span>
+                <button class="error-modal-close" aria-label="Close error popup">&times;</button>
+            </div>
         </div>
         
         <section class="weather" aria-label="Weather information">
@@ -62,6 +77,7 @@
         <section class="forecast" aria-label="5-day weather forecast" style="display: none;">
             <!-- 5-day forecast will be populated by JavaScript -->
         </section>
+        <div class="error" style="display:none;"><p></p></div>
     </main>
     
     <!-- Load configuration -->
