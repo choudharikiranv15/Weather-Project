@@ -16,32 +16,36 @@
     
     <main class="card">
         <header class="search">
-            <input 
-                type="text" 
-                placeholder="Enter city name" 
-                spellcheck="false"
-                aria-label="City name"
-                id="cityInput"
-            >
-            <button 
-                type="button"
-                aria-label="Search weather"
-                id="searchBtn"
-            >
-                <img src="assets/search.png" alt="Search icon">
-            </button>
-            <button 
-                type="button"
-                aria-label="Use my location"
-                id="locationBtn"
-            >
-                <img src="assets/location-pin.png" alt="Use my location" style="width:22px;height:22px;" />
-            </button>
-            <label class="unit-toggle" title="Toggle °C/°F">
-                <input type="checkbox" id="unitToggle" />
-                <span class="slider"></span>
-                <span class="unit-label">°C / °F</span>
-            </label>
+            <div class="search-row search-input-row">
+                <input 
+                    type="text" 
+                    placeholder="Enter city name" 
+                    spellcheck="false"
+                    aria-label="City name"
+                    id="cityInput"
+                >
+                <button 
+                    type="button"
+                    aria-label="Search weather"
+                    id="searchBtn"
+                >
+                    <img src="assets/search.png" alt="Search icon">
+                </button>
+            </div>
+            <div class="search-row">
+                <button 
+                    type="button"
+                    aria-label="Use my location"
+                    id="locationBtn"
+                >
+                    <img src="assets/location-pin.png" alt="Use my location" style="width:22px;height:22px;" />
+                </button>
+                <label class="unit-toggle" title="Toggle °C/°F">
+                    <input type="checkbox" id="unitToggle" />
+                    <span class="slider"></span>
+                    <span class="unit-label">°C / °F</span>
+                </label>
+            </div>
         </header>
         <div class="recent-searches" aria-label="Recent city searches"></div>
         <div class="error-modal" id="errorModal" role="alertdialog" aria-modal="true" style="display:none;">
