@@ -153,22 +153,19 @@ body::after {
 }
 
 .card {
-  width: 100%;
-  max-width: 400px;
-  background: rgba(17, 24, 39, 0.8);
-  backdrop-filter: blur(25px);
-  border-radius: 24px;
-  padding: 40px 30px;
+  width: 90%;
+  max-width: 470px;
+  background: linear-gradient(135deg, #00feba, #5b548a);
+  color: #fff;
+  margin: 100px auto 0;
+  border-radius: 20px;
+  padding: 40px 35px;
   text-align: center;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(59, 130, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 10;
+  min-height: 600px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
 }
 
 .card:hover {
@@ -568,19 +565,20 @@ body::after {
 
 .forecast-items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
     justify-items: center;
 }
 
 .forecast-item {
     text-align: center;
-    padding: 1rem;
+    padding: 1rem 0.8rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
-    min-width: 100px;
+    min-width: 80px;
+    flex: 1;
 }
 
 .forecast-item:hover {
@@ -598,15 +596,15 @@ body::after {
 }
 
 .forecast-icon {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     margin: 0.5rem 0;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .forecast-temp {
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin: 0.5rem 0;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -614,7 +612,7 @@ body::after {
 
 .forecast-weather {
     color: rgba(255, 255, 255, 0.8);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     margin: 0;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
@@ -636,39 +634,25 @@ body::after {
 
 /* Responsive Design for Forecast */
 @media (max-width: 768px) {
+    .card {
+        width: 95%;
+        max-width: 450px;
+        padding: 30px 25px;
+        min-height: 550px;
+    }
+    
     .forecast {
         margin-top: 1.5rem;
         padding: 1rem;
     }
     
     .forecast-items {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 0.8rem;
     }
     
     .forecast-item {
-        padding: 0.8rem;
-        min-width: 80px;
-    }
-    
-    .forecast-icon {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .forecast-temp {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .forecast-items {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5rem;
-    }
-    
-    .forecast-item {
-        padding: 0.6rem;
+        padding: 0.8rem 0.6rem;
         min-width: 70px;
     }
     
@@ -679,6 +663,34 @@ body::after {
     
     .forecast-temp {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 98%;
+        max-width: 400px;
+        padding: 25px 20px;
+        min-height: 500px;
+    }
+    
+    .forecast-items {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+    }
+    
+    .forecast-item {
+        padding: 0.6rem 0.5rem;
+        min-width: 60px;
+    }
+    
+    .forecast-icon {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .forecast-temp {
+        font-size: 0.9rem;
     }
     
     .forecast-weather {
