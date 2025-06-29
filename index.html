@@ -64,14 +64,8 @@
         </section>
     </main>
     
-    <!-- Load configuration (local config takes precedence) -->
-    <script src="config.local.js"></script>
-    <script>
-        // Fallback to template config if local config doesn't exist
-        if (typeof config === 'undefined' || config.OPENWEATHER_API_KEY === "YOUR_API_KEY_HERE") {
-            document.write('<script src="config.js"><\/script>');
-        }
-    </script>
+    <!-- Load configuration -->
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

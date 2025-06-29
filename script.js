@@ -1,4 +1,9 @@
 // Load API key from config
+if (typeof config === 'undefined') {
+    console.error('Config not loaded. Please check config.js file.');
+    throw new Error('Configuration not loaded');
+}
+
 const API_KEY = config.OPENWEATHER_API_KEY;
 const API_URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 const FORECAST_API_URL = "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
@@ -9,6 +14,12 @@ const searchBtn = document.querySelector("#searchBtn");
 const weatherIcon = document.querySelector(".weather-icon");
 const errorDiv = document.querySelector(".error");
 const weatherDiv = document.querySelector(".weather");
+
+// Check if all DOM elements are found
+if (!searchBox || !searchBtn || !weatherIcon || !errorDiv || !weatherDiv) {
+    console.error('Some DOM elements not found. Please check HTML structure.');
+    throw new Error('DOM elements not found');
+}
 
 // Weather condition mappings
 const weatherConditions = {
@@ -35,27 +46,38 @@ let isLoading = false;
 // Show weather data
 function showWeather(data) {
     // Hide error message
-    errorDiv.style.display = "none";
+    if (errorDiv) {
+        errorDiv.style.display = "none";
+    }
     
     // Update weather information
-    document.querySelector(".city").textContent = data.name;
-    document.querySelector(".temp").textContent = Math.round(data.main.temp) + "°C";
-    document.querySelector(".humidity").textContent = data.main.humidity + "%";
-    document.querySelector(".wind").textContent = Math.round(data.wind.speed) + " km/h";
+    const cityElement = document.querySelector(".city");
+    const tempElement = document.querySelector(".temp");
+    const humidityElement = document.querySelector(".humidity");
+    const windElement = document.querySelector(".wind");
+    
+    if (cityElement) cityElement.textContent = data.name;
+    if (tempElement) tempElement.textContent = Math.round(data.main.temp) + "°C";
+    if (humidityElement) humidityElement.textContent = data.main.humidity + "%";
+    if (windElement) windElement.textContent = Math.round(data.wind.speed) + " km/h";
     
     // Update weather icon
     const weatherMain = data.weather[0].main;
     const iconFile = weatherConditions[weatherMain] || "assets/clear.png";
-    weatherIcon.src = iconFile;
-    weatherIcon.alt = data.weather[0].description;
+    if (weatherIcon) {
+        weatherIcon.src = iconFile;
+        weatherIcon.alt = data.weather[0].description;
+    }
     
     // Show weather section with animation
-    weatherDiv.style.display = "block";
-    
-    // Add entrance animation
-    weatherDiv.style.animation = "none";
-    weatherDiv.offsetHeight; // Trigger reflow
-    weatherDiv.style.animation = "fadeInUp 0.6s ease";
+    if (weatherDiv) {
+        weatherDiv.style.display = "block";
+        
+        // Add entrance animation
+        weatherDiv.style.animation = "none";
+        weatherDiv.offsetHeight; // Trigger reflow
+        weatherDiv.style.animation = "fadeInUp 0.6s ease";
+    }
 }
 
 // Fetch current weather
@@ -100,15 +122,24 @@ async function checkWeather(city) {
         displayForecast(forecastData);
         
         // Hide error message if it was showing
-        errorDiv.style.display = "none";
+        if (errorDiv) {
+            errorDiv.style.display = "none";
+        }
         
     } catch (error) {
         console.error("Error:", error);
-        errorDiv.style.display = "block";
-        errorDiv.querySelector("p").textContent = error.message;
+        if (errorDiv) {
+            errorDiv.style.display = "block";
+            const errorParagraph = errorDiv.querySelector("p");
+            if (errorParagraph) {
+                errorParagraph.textContent = error.message;
+            }
+        }
         
         // Hide weather and forecast on error
-        weatherDiv.style.display = "none";
+        if (weatherDiv) {
+            weatherDiv.style.display = "none";
+        }
         const forecastContainer = document.querySelector('.forecast');
         if (forecastContainer) {
             forecastContainer.style.display = "none";
