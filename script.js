@@ -11,21 +11,21 @@ const weatherDiv = document.querySelector(".weather");
 
 // Weather condition mappings
 const weatherConditions = {
-    "Clear": "clear.png",
-    "Clouds": "clouds.png",
-    "Rain": "rain.png",
-    "Drizzle": "drizzle.png",
-    "Mist": "mist.png",
-    "Fog": "mist.png",
-    "Haze": "mist.png",
-    "Smoke": "mist.png",
-    "Dust": "mist.png",
-    "Sand": "mist.png",
-    "Ash": "mist.png",
-    "Squall": "wind1.png.png",
-    "Tornado": "wind1.png.png",
-    "Snow": "snow.png",
-    "Thunderstorm": "rain.png"
+    "Clear": "assets/clear.png",
+    "Clouds": "assets/clouds.png",
+    "Rain": "assets/rain.png",
+    "Drizzle": "assets/drizzle.png",
+    "Mist": "assets/mist.png",
+    "Fog": "assets/mist.png",
+    "Haze": "assets/mist.png",
+    "Smoke": "assets/mist.png",
+    "Dust": "assets/mist.png",
+    "Sand": "assets/mist.png",
+    "Ash": "assets/mist.png",
+    "Squall": "assets/wind1.png.png",
+    "Tornado": "assets/wind1.png.png",
+    "Snow": "assets/snow.png",
+    "Thunderstorm": "assets/rain.png"
 };
 
 // Loading state management
@@ -50,7 +50,7 @@ function hideLoading() {
     if (!isLoading) return;
     isLoading = false;
     
-    searchBtn.innerHTML = searchBtn.dataset.originalContent || '<img src="search.png" alt="Search icon">';
+    searchBtn.innerHTML = searchBtn.dataset.originalContent || '<img src="assets/search.png" alt="Search icon">';
     searchBtn.disabled = false;
     searchBox.disabled = false;
 }
@@ -84,7 +84,7 @@ function showWeather(data) {
     
     // Update weather icon
     const weatherMain = data.weather[0].main;
-    const iconFile = weatherConditions[weatherMain] || "clear.png";
+    const iconFile = weatherConditions[weatherMain] || "assets/clear.png";
     weatherIcon.src = iconFile;
     weatherIcon.alt = data.weather[0].description;
     
