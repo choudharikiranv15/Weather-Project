@@ -113,11 +113,13 @@ Weather/
 
 ## 🔑 API Configuration
 
-The app uses the OpenWeatherMap API. The API key is included in the code, but for production use, consider:
+The app uses the OpenWeatherMap API. To set up your API key:
 
-- Moving the API key to environment variables
-- Implementing rate limiting
-- Adding API key rotation
+1. **Get an API key**: Sign up at [OpenWeatherMap](https://home.openweathermap.org/users/sign_up)
+2. **Create local config**: Copy `config.js` to `config.local.js`
+3. **Add your key**: Replace `YOUR_API_KEY_HERE` with your actual API key in `config.local.js`
+
+**Security Note**: The `config.local.js` file is excluded from git to keep your API key private.
 
 ## 📄 License
 

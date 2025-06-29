@@ -5,6 +5,7 @@
 
 # API keys and sensitive data
 key.js
+config.local.js
 
 # IDE files
 .vscode/
